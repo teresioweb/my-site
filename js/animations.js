@@ -20,3 +20,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   images.forEach((img) => observer.observe(img));
 });
+
+// Mobile dropdown menu: toggle open/closed, and close when a link is
+// tapped or when tapping outside the menu.
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.querySelector(".menu-toggle");
+  const menu = document.querySelector(".mobile-nav");
+  if (!btn || !menu) return;
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    menu.classList.toggle("open");
+  });
+
+  menu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => menu.classList.remove("open"));
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!menu.contains(e.target) && e.target !== btn) {
+      menu.classList.remove("open");
+    }
+  });
+});

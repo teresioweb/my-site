@@ -25,6 +25,9 @@ Merriweather (serif) is loaded from Google Fonts via `@import` in `css/style.css
 
 ## 1. Images still needed
 
+**Site header (every page)** — new addition:
+- `images/TerTop.jpg` — small photo of Teresio, shown cropped into an oval at the left end of the header line on every page.
+
 **Landing page (index.html)** — 4 small teaser thumbnails:
 - `images/card-tecnigrafo.jpg` — from `https://static.wixstatic.com/media/416323_36215ca9223f417b86a1f4e3c420fd2e~mv2_d_2300_1483_s_2.jpg`
 - `images/card-logos.jpg` — from `https://static.wixstatic.com/media/416323_5e15c71210444853b1758d2369cb1546~mv2.jpg`
@@ -60,7 +63,8 @@ To grab any Wix image at full quality: open the source URL in a browser and Save
 
 ## 2. Layout notes
 
-- **Side-by-side image + description**: any `<figure class="reveal-img side">` shows the image and its `<figcaption>` next to each other (stacks on mobile). Add `from-right` to flip which side the image is on. Used on the Logos 27 and Curriculum pages.
+- **Header**: title on top, a horizontal line below it with an oval-cropped photo at its left end, nav links below the line. On screens under 700px wide, the horizontal nav is replaced by a hamburger button (top-right) that opens a dropdown — handled by `js/animations.js`.
+- **Side-by-side image + description**: any `<figure class="reveal-img side">` shows the image and its `<figcaption>` next to each other (stacks on mobile). Add `from-right` to flip which side the image is on, `align-top` to align the text to the top of the image instead of centering it vertically, `square` for a taller/squarer image crop, and `crop-top` to crop the image from the top instead of the center. Used on the Logos 27 and Curriculum pages.
 - **Clump animation** (Un discorso di Capellaro): the 4 thumbnails in `.clump-stage` slide in together from different sides and land clustered, on page load — no JS needed, it's pure CSS (`@keyframes clumpFrom...` in `style.css`). All the page's text sits below it.
 - **Per-image reveal** (Home, Logos 27, Curriculum, Foto, Quercia): each image fades/slides in individually as it scrolls into view, via `js/animations.js`.
 
