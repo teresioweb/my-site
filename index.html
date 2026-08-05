@@ -9,11 +9,23 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="css/style.css">
 <style>
-  .cards { display: flex; flex-direction: column; gap: 44px; margin-top: 20px; }
-  .card { display: flex; gap: 24px; align-items: center; text-decoration: none; color: inherit; }
+  .cards { display: flex; flex-direction: column; gap: 32px; margin-top: 20px; }
+  .card {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    text-decoration: none;
+    color: #1a1a1a;
+    padding: 26px;
+    border-radius: 16px;
+  }
+  .card:nth-child(1) { background: #FEE8B2; }
+  .card:nth-child(2) { background: #CEDCE6; }
+  .card:nth-child(3) { background: #FCC1C1; }
+  .card:nth-child(4) { background: #FFDDC2; }
   .card img { width: 180px; border-radius: 8px; flex-shrink: 0; }
-  .card h2 { margin: 0 0 8px; font-size: 19px; }
-  .card p { margin: 0; color: #bbb; font-style: italic; font-size: 15px; }
+  .card h2 { margin: 0 0 8px; font-size: 19px; color: #1a1a1a; }
+  .card p { margin: 0; color: #333; font-style: italic; font-size: 15px; }
   @media (max-width: 560px) {
     .card { flex-direction: column; align-items: flex-start; }
     .card img { width: 100%; }

@@ -134,11 +134,13 @@ figcaption {
 }
 
 /* --- clump: several images slide in together from different sides
-   and land clustered near each other, then page text follows below --- */
+   and land clustered with spacing between them, then page text follows below.
+   Each .clump-photo sets its own --fx/--fy (start offset) and --tx/--ty
+   (resting offset) inline, so the same keyframe works for all of them. --- */
 .clump-stage {
   position: relative;
-  height: 300px;
-  max-width: 600px;
+  height: 620px;
+  max-width: 820px;
   margin: 0 auto 60px;
 }
 
@@ -152,12 +154,14 @@ figcaption {
 
 .clump-photo {
   position: absolute;
-  width: 110px;
-  height: 110px;
-  border-radius: 10px;
+  width: 220px;
+  height: 220px;
+  border-radius: 14px;
   overflow: hidden;
   opacity: 0;
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.5);
+  animation: clumpIn 0.9s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+  animation-delay: var(--delay, 0s);
 }
 
 .clump-photo img {
@@ -167,26 +171,9 @@ figcaption {
   display: block;
 }
 
-.clump-photo.c1 { animation: clumpFromLeft 0.9s cubic-bezier(0.25, 0.8, 0.25, 1) 0.1s forwards; }
-.clump-photo.c2 { animation: clumpFromTop 0.9s cubic-bezier(0.25, 0.8, 0.25, 1) 0.25s forwards; }
-.clump-photo.c3 { animation: clumpFromRight 0.9s cubic-bezier(0.25, 0.8, 0.25, 1) 0.4s forwards; }
-.clump-photo.c4 { animation: clumpFromBottom 0.9s cubic-bezier(0.25, 0.8, 0.25, 1) 0.55s forwards; }
-
-@keyframes clumpFromLeft {
-  from { transform: translate(-380px, -58px); opacity: 0; }
-  to   { transform: translate(-120px, -58px); opacity: 1; }
-}
-@keyframes clumpFromTop {
-  from { transform: translate(-58px, -280px); opacity: 0; }
-  to   { transform: translate(-58px, -58px); opacity: 1; }
-}
-@keyframes clumpFromRight {
-  from { transform: translate(380px, -58px); opacity: 0; }
-  to   { transform: translate(120px, -58px); opacity: 1; }
-}
-@keyframes clumpFromBottom {
-  from { transform: translate(-58px, 280px); opacity: 0; }
-  to   { transform: translate(-58px, 120px); opacity: 1; }
+@keyframes clumpIn {
+  from { transform: translate(var(--fx), var(--fy)); opacity: 0; }
+  to   { transform: translate(var(--tx), var(--ty)); opacity: 1; }
 }
 
 footer {
@@ -208,3 +195,14 @@ footer a { color: #999; }
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
+
+/* --- highlighted words inside the "Un discorso" quotes, pointing to
+   the color-coded image each paragraph refers to --- */
+.hl {
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: #1a1a1a;
+  font-weight: 600;
+  text-decoration: none;
+}
+

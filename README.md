@@ -38,12 +38,17 @@ Merriweather (serif) is loaded from Google Fonts via `@import` in `css/style.css
 
 **Curriculum** — `images/curriculum-fronte.jpg`, `images/diploma-cfm.jpg`, `images/teresio-cavaliere.jpg` (URLs unchanged from before)
 
-**Un discorso di Capellaro** — 4 clump thumbnails, **not yet sourced** (Wix loaded these dynamically and they weren't captured):
+**Un discorso di Capellaro** — 6 clump thumbnails now (was 4). The first 4 are the same as before and still **not sourced** (Wix loaded them dynamically):
 - `images/discorso/capellaro-documento.jpg`
 - `images/discorso/piol.jpg`
 - `images/discorso/sartor.jpg`
 - `images/discorso/banchelli.jpg`
-Go to the live Wix page for this section and save these four thumbnail images manually, or substitute any relevant photo/document scan you have.
+
+The 2 new ones are a best guess — I reused the two "Teresio al lavoro" photos that appear as teaser thumbnails on the landing page and on this page's own nav card, since the real page's extra 2 images weren't retrievable either. **Double-check these against the live Wix page** and swap in the correct originals if these aren't right:
+- `images/discorso/teresio-lavoro-1.jpg` — best guess: `https://static.wixstatic.com/media/416323_25ac4d07c28c414393cbe299c09182a6~mv2.jpg`
+- `images/discorso/teresio-lavoro-2.jpg` — best guess: `https://static.wixstatic.com/media/416323_02ccc3ae42414f1189a31ab7ca763d52~mv2.jpg`
+
+Go to the live Wix page for this section to confirm/replace these, or substitute any relevant photo/document scan you have.
 
 **Quercia (hidden page)**:
 - `images/quercia/quercia-racciano-1.jpg` — from `https://static.wixstatic.com/media/416323_6e9e04a810f040c598a8abe51ce96568~mv2.png`
