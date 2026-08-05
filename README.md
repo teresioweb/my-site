@@ -1,47 +1,71 @@
-# My Site — GitHub Pages Starter
+# Teresio Gassino — GitHub Pages Site
 
-A simple 5-page static site with a GSAP "gather to center" photo animation on the homepage, no build tools required.
+A static tribute site with real content, Italian typography (Merriweather), and scroll/load-triggered image animations. No build tools required.
 
 ## Structure
 ```
 site/
-├── index.html      ← homepage with the animation
-├── page2.html
-├── page3.html
-├── page4.html
-├── page5.html
+├── index.html                      ← landing page (matches Wix root "/")
+├── home.html                       ← full essay (matches Wix "/home")
+├── logos-27.html
+├── un-discorso-di-capellaro.html
+├── curriculum.html
+├── galleria-immagini.html          ← Foto (gallery placeholder, needs your images)
+├── quercia.html                    ← hidden page, NOT in nav, linked from home.html text only
 ├── css/style.css
 ├── js/animations.js
-└── images/          ← put your photos here (photo1.jpg ... photo5.jpg)
+└── images/
+    ├── discorso/                   ← 4 thumbnails for the clump animation
+    ├── galleria/                   ← Foto gallery images
+    └── quercia/                    ← 2 images for the hidden Quercia page
 ```
 
-## 1. Add your images
+## Font
+Merriweather (serif) is loaded from Google Fonts via `@import` in `css/style.css` and applied site-wide. No local files needed.
 
-The text content for all 5 pages is already filled in with the real content from the Wix site. You just need to download the images and drop them into `images/` with these exact filenames (referenced already in the HTML):
+## 1. Images still needed
 
-**Home (index.html)**
-- `images/teresio-tecnigrafo.jpg` — from `https://static.wixstatic.com/media/416323_36215ca9223f417b86a1f4e3c420fd2e~mv2_d_2300_1483_s_2.jpg`
-- `images/logos-27.jpg` — from `https://static.wixstatic.com/media/416323_5e15c71210444853b1758d2369cb1546~mv2.jpg`
+**Landing page (index.html)** — 4 small teaser thumbnails:
+- `images/card-tecnigrafo.jpg` — from `https://static.wixstatic.com/media/416323_36215ca9223f417b86a1f4e3c420fd2e~mv2_d_2300_1483_s_2.jpg`
+- `images/card-logos.jpg` — from `https://static.wixstatic.com/media/416323_5e15c71210444853b1758d2369cb1546~mv2.jpg`
+- `images/card-lavoro-1.jpg` — from `https://static.wixstatic.com/media/416323_25ac4d07c28c414393cbe299c09182a6~mv2.jpg`
+- `images/card-lavoro-2.jpg` — from `https://static.wixstatic.com/media/416323_02ccc3ae42414f1189a31ab7ca763d52~mv2.jpg`
 
-**Logos 27 (logos-27.html)**
-- `images/logos-pintori.jpg` — from `https://static.wixstatic.com/media/416323_2c4aff2dd32147d5b512e4bc489afb2c~mv2.jpg`
-- `images/logos-opuscolo.jpg` — from `https://static.wixstatic.com/media/416323_00652d23dc8742fea5d6119dbe55dc6c~mv2.jpg`
-- `images/ranimer-belle-mecanique.jpg` — from `https://static.wixstatic.com/media/416323_b7f40204e4004e00a87169babe05b88c~mv2.jpg`
-- `images/schema-logos.jpg` — from `https://static.wixstatic.com/media/416323_978f0e98c7534d559740f2f532fce1f2~mv2.jpg`
+**Home (home.html)** — same as before:
+- `images/teresio-tecnigrafo.jpg`, `images/logos-27.jpg` (see previous notes / same source URLs as the card thumbnails above, full-size versions)
 
-**Curriculum (curriculum.html)**
-- `images/curriculum-fronte.jpg` — from `https://static.wixstatic.com/media/416323_ee46b413f3664b8eb0a4273caadb92e4~mv2.jpg`
-- `images/diploma-cfm.jpg` — from `https://static.wixstatic.com/media/344412_87b097420df44f438fb346c0fcde0b08~mv2_d_2420_1709_s_2.jpg`
-- `images/teresio-cavaliere.jpg` — from `https://static.wixstatic.com/media/344412_996b3c859bb74cf1af6ad770627d1e29~mv2.jpeg`
+**Logos 27** — `images/logos-pintori.jpg`, `images/logos-opuscolo.jpg`, `images/ranimer-belle-mecanique.jpg`, `images/schema-logos.jpg` (URLs unchanged from before)
 
-**Foto (galleria-immagini.html)** — this page is a placeholder. Wix loads its gallery images dynamically via JavaScript so they couldn't be auto-extracted. Go to the live Wix page, save each image (or pull originals from the Wix Media Manager if you have account access), drop them into `images/galleria/`, and duplicate the `<figure>` block in `galleria-immagini.html` for each one.
+**Curriculum** — `images/curriculum-fronte.jpg`, `images/diploma-cfm.jpg`, `images/teresio-cavaliere.jpg` (URLs unchanged from before)
 
-To download a Wix image at full resolution: open the URL above directly in your browser, right-click → Save As. The URLs above are Wix's cropped/compressed display versions — for the true originals, it's better to go into the Wix Media Manager (if you have account access) and download from there instead.
+**Un discorso di Capellaro** — 4 clump thumbnails, **not yet sourced** (Wix loaded these dynamically and they weren't captured):
+- `images/discorso/capellaro-documento.jpg`
+- `images/discorso/piol.jpg`
+- `images/discorso/sartor.jpg`
+- `images/discorso/banchelli.jpg`
+Go to the live Wix page for this section and save these four thumbnail images manually, or substitute any relevant photo/document scan you have.
 
-## 2. Adjust the animation (optional)
-Each image on the page has a `reveal-img` class, and slides in from the **left** by default. Add the class `from-right` to any `<figure>` to have it slide in from the right instead (already alternated in the pages above). The trigger point and speed can be tuned in `css/style.css` (`.reveal-img img` transition) and `js/animations.js` (`threshold: 0.2` — lower it to trigger the animation earlier while scrolling).
+**Quercia (hidden page)**:
+- `images/quercia/quercia-racciano-1.jpg` — from `https://static.wixstatic.com/media/416323_6e9e04a810f040c598a8abe51ce96568~mv2.png`
+- `images/quercia/quercia-racciano-2.jpg` — from `https://static.wixstatic.com/media/416323_4641bb0c84a94d76ac18b61d3d09aebf~mv2.png`
 
-## 3. Push to GitHub
+**Foto (galleria-immagini.html)** — still a placeholder; pull images from the live Wix gallery or Media Manager into `images/galleria/`.
+
+To grab any Wix image at full quality: open the source URL in a browser and Save As, or better, pull the original from the Wix Media Manager if you have account access (the URLs above are Wix's compressed display versions).
+
+## 2. Layout notes
+
+- **Side-by-side image + description**: any `<figure class="reveal-img side">` shows the image and its `<figcaption>` next to each other (stacks on mobile). Add `from-right` to flip which side the image is on. Used on the Logos 27 and Curriculum pages.
+- **Clump animation** (Un discorso di Capellaro): the 4 thumbnails in `.clump-stage` slide in together from different sides and land clustered, on page load — no JS needed, it's pure CSS (`@keyframes clumpFrom...` in `style.css`). All the page's text sits below it.
+- **Per-image reveal** (Home, Logos 27, Curriculum, Foto, Quercia): each image fades/slides in individually as it scrolls into view, via `js/animations.js`.
+
+## 3. Site structure vs. the original Wix site
+- Wix's root `/` is a separate teaser/landing page (cards linking into the site) — that's now `index.html` here.
+- Wix's `/home` is the full essay — that's `home.html` here.
+- The nav bar's &#8962; icon links back to `index.html` (the landing page), matching the original.
+- `quercia.html` is intentionally excluded from the nav bar, exactly as on the original site — it's only reachable via the "La Quercia di Racciano" link inside the text on `home.html`.
+
+## 4. Push to GitHub
 ```bash
 cd site
 git init
@@ -52,16 +76,5 @@ git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO.git
 git push -u origin main
 ```
 
-## 4. Turn on GitHub Pages
-1. Go to your repo on GitHub → **Settings** → **Pages**.
-2. Under "Build and deployment", set **Source** to `Deploy from a branch`.
-3. Set **Branch** to `main` and folder to `/ (root)`.
-4. Save. Your site will be live within a minute or two at:
-   `https://YOUR-USERNAME.github.io/YOUR-REPO/`
-
-## 5. Custom domain (optional)
-If you own a domain, add it under Settings → Pages → Custom domain, then create a `CNAME` record at your DNS provider pointing to `YOUR-USERNAME.github.io`.
-
-## Notes
-- GSAP is loaded from a CDN in `index.html` — no install needed.
-- If you want the animation on more than one page, add the same `<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>` and `js/animations.js` include, plus the `.stage`/`.photo` markup, to that page.
+## 5. Turn on GitHub Pages
+Settings → Pages → Source: "Deploy from a branch" → Branch: `main`, folder `/ (root)` → Save. Live within a minute or two at `https://YOUR-USERNAME.github.io/YOUR-REPO/`.

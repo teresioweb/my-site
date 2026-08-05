@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap');
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-family: 'Merriweather', Georgia, serif;
   background: #101010;
   color: #eee;
   min-height: 100vh;
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
 nav {
@@ -94,6 +96,97 @@ figcaption {
 .reveal-img.visible img {
   opacity: 1;
   transform: translateX(0);
+}
+
+/* --- side-by-side figure: image + description next to each other --- */
+.reveal-img.side {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.reveal-img.side > a,
+.reveal-img.side > img {
+  width: 42%;
+  flex-shrink: 0;
+}
+
+.reveal-img.side figcaption {
+  flex: 1;
+  margin-top: 0;
+  font-size: 15px;
+  color: #ccc;
+  line-height: 1.7;
+}
+
+.reveal-img.side.from-right {
+  flex-direction: row-reverse;
+}
+
+@media (max-width: 640px) {
+  .reveal-img.side {
+    flex-direction: column !important;
+  }
+  .reveal-img.side > a,
+  .reveal-img.side > img {
+    width: 100%;
+  }
+}
+
+/* --- clump: several images slide in together from different sides
+   and land clustered near each other, then page text follows below --- */
+.clump-stage {
+  position: relative;
+  height: 300px;
+  max-width: 600px;
+  margin: 0 auto 60px;
+}
+
+.clump-anchor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+}
+
+.clump-photo {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border-radius: 10px;
+  overflow: hidden;
+  opacity: 0;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5);
+}
+
+.clump-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.clump-photo.c1 { animation: clumpFromLeft 0.9s cubic-bezier(0.25, 0.8, 0.25, 1) 0.1s forwards; }
+.clump-photo.c2 { animation: clumpFromTop 0.9s cubic-bezier(0.25, 0.8, 0.25, 1) 0.25s forwards; }
+.clump-photo.c3 { animation: clumpFromRight 0.9s cubic-bezier(0.25, 0.8, 0.25, 1) 0.4s forwards; }
+.clump-photo.c4 { animation: clumpFromBottom 0.9s cubic-bezier(0.25, 0.8, 0.25, 1) 0.55s forwards; }
+
+@keyframes clumpFromLeft {
+  from { transform: translate(-380px, -58px); opacity: 0; }
+  to   { transform: translate(-120px, -58px); opacity: 1; }
+}
+@keyframes clumpFromTop {
+  from { transform: translate(-58px, -280px); opacity: 0; }
+  to   { transform: translate(-58px, -58px); opacity: 1; }
+}
+@keyframes clumpFromRight {
+  from { transform: translate(380px, -58px); opacity: 0; }
+  to   { transform: translate(120px, -58px); opacity: 1; }
+}
+@keyframes clumpFromBottom {
+  from { transform: translate(-58px, 280px); opacity: 0; }
+  to   { transform: translate(-58px, 120px); opacity: 1; }
 }
 
 footer {
