@@ -11,22 +11,32 @@
 <body>
 
 <header class="site-header">
-  <button class="menu-toggle" aria-label="Apri il menu">&#9776;</button>
 
-  <p class="site-title">Teresio Gassino</p>
-
-  <div class="header-line">
-    <img src="images/TerTop.jpg" class="header-photo" alt="Teresio Gassino">
+  <!-- Desktop: title, then line with big oval photo, then nav below -->
+  <div class="header-desktop">
+    <p class="site-title">Teresio Gassino</p>
+    <div class="header-line">
+      <img src="images/TerTop.jpg" class="header-photo" alt="Teresio Gassino">
+    </div>
+    <nav class="main-nav">
+      <a href="home.html" class="active">Teresio</a>
+      <a href="logos-27.html">Logos 27</a>
+      <a href="un-discorso-di-capellaro.html">Un discorso di Capellaro</a>
+      <a href="curriculum.html">Curriculum</a>
+      <a href="galleria-immagini.html">Foto</a>
+      <a href="index.html">&#8962;</a>
+    </nav>
   </div>
 
-  <nav class="main-nav">
-    <a href="home.html" class="active">Teresio</a>
-    <a href="logos-27.html">Logos 27</a>
-    <a href="un-discorso-di-capellaro.html">Un discorso di Capellaro</a>
-    <a href="curriculum.html">Curriculum</a>
-    <a href="galleria-immagini.html">Foto</a>
-    <a href="index.html">&#8962;</a>
-  </nav>
+  <!-- Mobile: oval photo centered, burger above line's right edge, line, title below -->
+  <div class="header-mobile">
+    <img src="images/TerTop.jpg" class="header-mobile-photo" alt="Teresio Gassino">
+    <div class="header-mobile-line-wrap">
+      <button class="menu-toggle" aria-label="Apri il menu">&#9776;</button>
+      <div class="header-mobile-line"></div>
+    </div>
+    <p class="site-title">Teresio Gassino</p>
+  </div>
 
   <nav class="mobile-nav">
     <a href="home.html" class="active">Teresio</a>
