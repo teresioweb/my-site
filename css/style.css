@@ -77,6 +77,63 @@ body {
   border-bottom: 1px solid #111;
 }
 
+.menu-toggle {
+  display: none;
+  position: relative;
+  z-index: 1;
+  background: none;
+  border: none;
+  color: #111;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* mobile: thin bar with brand left, burger right; links become a
+   dropdown panel that reveals a larger area of the background drawing */
+@media (max-width: 700px) {
+  .site-nav {
+    padding: 12px 20px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    padding: 22px 24px 26px;
+    background-image: url('images/frontura.jpg');
+    background-size: cover;
+    background-position: center 20%;
+  }
+
+  .nav-links::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: rgba(255, 255, 255, 0.72);
+  }
+
+  .nav-links a {
+    position: relative;
+    z-index: 1;
+    padding: 9px 0;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+}
+
 /* reserve space so fixed nav doesn't cover the top of the page content */
 body {
   padding-top: 66px;

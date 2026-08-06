@@ -22,9 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Nav bar: hides when scrolling down, reappears when scrolling up.
-// Stays visible while near the top of the page.
+// Stays visible while near the top of the page, or while the mobile
+// dropdown is open.
 document.addEventListener("DOMContentLoaded", () => {
   const nav = document.querySelector(".site-nav");
+  const menu = document.querySelector(".nav-links");
   if (!nav) return;
 
   let lastY = window.scrollY;
@@ -32,8 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("scroll", () => {
     const y = window.scrollY;
+    const menuOpen = menu && menu.classList.contains("open");
 
-    if (y < hideAfter) {
+    if (menuOpen || y < hideAfter) {
       nav.classList.remove("nav-hidden");
     } else if (y > lastY) {
       nav.classList.add("nav-hidden"); // scrolling down
@@ -43,4 +46,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     lastY = y;
   }, { passive: true });
+});
+
+// Mobile burger: toggles the dropdown, closes on link tap or outside tap.
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.querySelector(".menu-toggle");
+  const menu = document.querySelector(".nav-links");
+  if (!btn || !menu) return;
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    menu.classList.toggle("open");
+  });
+
+  menu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => menu.classList.remove("open"));
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!menu.contains(e.target) && e.target !== btn) {
+      menu.classList.remove("open");
+    }
+  });
 });

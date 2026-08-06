@@ -63,7 +63,7 @@ To grab any Wix image at full quality: open the source URL in a browser and Save
 
 ## 2. Layout notes
 
-- **Header**: a fixed nav bar with a faded background drawing (`images/frontura.jpg`), "Teresio Gassino" on the left (links to the landing page), the other 5 links on the right. It hides on scroll down and reappears on scroll up — handled by `js/animations.js`.
+- **Header**: a fixed nav bar with a faded background drawing (`images/frontura.jpg`), "Teresio Gassino" on the left (links to the landing page), the other 5 links on the right. It hides on scroll down and reappears on scroll up — handled by `js/animations.js`. **On mobile** (under 700px), the links collapse into a burger menu on the right — tapping it opens a taller dropdown that reveals more of the background drawing; the bar stays visible while the dropdown is open and only starts hiding-on-scroll again once it's closed.
 - **Side-by-side image + description**: any `<figure class="reveal-img side">` shows the image and its `<figcaption>` next to each other (stacks on mobile). Add `from-right` to flip which side the image is on, `align-top` to align the text to the top of the image instead of centering it vertically, `square` for a taller/squarer image crop, and `crop-top` to crop the image from the top instead of the center. Used on the Logos 27 and Curriculum pages.
 - **Clump animation** (Un discorso di Capellaro): the 4 thumbnails in `.clump-stage` slide in together from different sides and land clustered, on page load — no JS needed, it's pure CSS (`@keyframes clumpFrom...` in `style.css`). All the page's text sits below it.
 - **Per-image reveal** (Home, Logos 27, Curriculum, Foto, Quercia): each image fades/slides in individually as it scrolls into view, via `js/animations.js`.
