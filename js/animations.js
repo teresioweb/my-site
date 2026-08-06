@@ -21,25 +21,26 @@ document.addEventListener("DOMContentLoaded", () => {
   images.forEach((img) => observer.observe(img));
 });
 
-// Mobile dropdown menu: toggle open/closed, and close when a link is
-// tapped or when tapping outside the menu.
+// Nav bar: hides when scrolling down, reappears when scrolling up.
+// Stays visible while near the top of the page.
 document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.querySelector(".menu-toggle");
-  const menu = document.querySelector(".mobile-nav");
-  if (!btn || !menu) return;
+  const nav = document.querySelector(".site-nav");
+  if (!nav) return;
 
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    menu.classList.toggle("open");
-  });
+  let lastY = window.scrollY;
+  const hideAfter = 80; // px scrolled before the nav is allowed to hide
 
-  menu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => menu.classList.remove("open"));
-  });
+  window.addEventListener("scroll", () => {
+    const y = window.scrollY;
 
-  document.addEventListener("click", (e) => {
-    if (!menu.contains(e.target) && e.target !== btn) {
-      menu.classList.remove("open");
+    if (y < hideAfter) {
+      nav.classList.remove("nav-hidden");
+    } else if (y > lastY) {
+      nav.classList.add("nav-hidden"); // scrolling down
+    } else {
+      nav.classList.remove("nav-hidden"); // scrolling up
     }
-  });
+
+    lastY = y;
+  }, { passive: true });
 });

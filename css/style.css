@@ -10,165 +10,76 @@ body {
   line-height: 1.8;
 }
 
-/* --- site header: separate desktop and mobile layouts, toggled by media query --- */
-.site-header {
-  position: relative;
-  text-align: center;
-  padding: 26px 20px 0;
-}
-
-.site-title {
-  font-size: 25px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  color: #fff;
-}
-
-/* ============ DESKTOP: title, then line with big oval photo at its
-   left end, then nav below the line ============ */
-.header-desktop {
-  display: block;
-}
-
-.header-desktop .site-title {
-  margin-bottom: 8px;
-}
-
-.header-line {
-  position: relative;
-  max-width: 480px;
-  margin: 0 auto;
-  height: 110px;
-}
-
-.header-line::after {
-  content: "";
-  position: absolute;
-  top: 50%;
+/* --- site nav: fixed bar, hides on scroll down, reappears on scroll up.
+   Background is a faded drawing by Teresio, so nav text is dark. --- */
+.site-nav {
+  position: fixed;
+  top: 0;
   left: 0;
   right: 0;
-  border-top: 1px solid #333;
-}
-
-.header-photo {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 156px;
-  height: 110px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #101010;
-  background: #101010;
-}
-
-.main-nav {
+  z-index: 100;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 28px;
-  padding: 6px 16px 24px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 28px;
+  padding: 16px 28px;
+  background-image: url('images/frontura.jpg');
+  background-size: cover;
+  background-position: center 25%;
+  transition: transform 0.35s ease;
 }
 
-.main-nav a {
-  color: #ccc;
-  text-decoration: none;
-  font-size: 15px;
-  letter-spacing: 0.3px;
-  transition: color 0.2s ease;
+.site-nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.72);
 }
 
-.main-nav a:hover,
-.main-nav a.active {
-  color: #fff;
-  border-bottom: 1px solid #fff;
+.site-nav.nav-hidden {
+  transform: translateY(-100%);
 }
 
-/* ============ MOBILE: oval photo centered above the line, burger
-   right above the line's right edge, line, then title below ============ */
-.header-mobile {
-  display: none;
-}
-
-.header-mobile-photo {
-  display: block;
-  margin: 0 auto 14px;
-  width: 68px;
-  height: 48px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #101010;
-  background: #101010;
-}
-
-.header-mobile-line-wrap {
+.brand,
+.nav-links {
   position: relative;
-  max-width: 320px;
-  margin: 0 auto;
+  z-index: 1;
 }
 
-.header-mobile-line {
-  border-top: 1px solid #333;
-  margin-top: 36px;
-}
-
-.header-mobile .site-title {
-  margin-top: 16px;
-}
-
-/* burger button: shown only on mobile, sitting just above the line,
-   right-aligned to the line's right edge */
-.menu-toggle {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: none;
-  border: none;
-  color: #eee;
-  font-size: 24px;
-  line-height: 1;
-  cursor: pointer;
-  z-index: 25;
-}
-
-.mobile-nav {
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  top: 100%;
-  right: 20px;
-  background: #161616;
-  border: 1px solid #2a2a2a;
-  border-radius: 10px;
-  min-width: 220px;
-  padding: 8px 0;
-  z-index: 30;
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5);
-}
-
-.mobile-nav.open {
-  display: flex;
-}
-
-.mobile-nav a {
-  color: #ccc;
+.brand {
+  color: #111;
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: 0.3px;
   text-decoration: none;
-  font-size: 15px;
-  padding: 11px 20px;
+  white-space: nowrap;
 }
 
-.mobile-nav a:hover,
-.mobile-nav a.active {
-  color: #fff;
-  background: #202020;
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 22px;
 }
 
-@media (max-width: 700px) {
-  .header-desktop { display: none; }
-  .header-mobile { display: block; }
-  .menu-toggle { display: block; }
+.nav-links a {
+  color: #111;
+  text-decoration: none;
+  font-size: 14.5px;
+  letter-spacing: 0.2px;
+  transition: opacity 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  font-weight: 700;
+  border-bottom: 1px solid #111;
+}
+
+/* reserve space so fixed nav doesn't cover the top of the page content */
+body {
+  padding-top: 66px;
 }
 
 main {
