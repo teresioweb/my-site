@@ -69,3 +69,40 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// Gallery lightbox: click any image inside .gallery-grid to see it
+// enlarged in an overlay. Closes on the X, on clicking outside the
+// image, or on Escape.
+document.addEventListener("DOMContentLoaded", () => {
+  const overlay = document.querySelector(".lightbox-overlay");
+  const gallery = document.querySelector(".gallery-grid");
+  if (!overlay || !gallery) return;
+
+  const overlayImg = overlay.querySelector("img");
+  const closeBtn = overlay.querySelector(".lightbox-close");
+
+  const open = (src, alt) => {
+    overlayImg.src = src;
+    overlayImg.alt = alt || "";
+    overlay.classList.add("open");
+  };
+
+  const close = () => {
+    overlay.classList.remove("open");
+    overlayImg.src = "";
+  };
+
+  gallery.querySelectorAll("img").forEach((img) => {
+    img.addEventListener("click", () => open(img.src, img.alt));
+  });
+
+  closeBtn.addEventListener("click", close);
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) close();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") close();
+  });
+});

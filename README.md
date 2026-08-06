@@ -25,6 +25,9 @@ Merriweather (serif) is loaded from Google Fonts via `@import` in `css/style.css
 
 ## 1. Images still needed
 
+**Footer (every page)** — new addition:
+- `images/creative.png` — Creative Commons badge, shown at 22px height in the fixed footer bar, linking to the license page.
+
 **Site nav bar (every page)** — new addition:
 - `images/frontura.jpg` — a pencil drawing by Teresio (1152×2048), used as a faded background across the whole nav bar. `background-size: cover; background-position: center 25%;` picks which part of the tall portrait image shows in the wide short bar — adjust `background-position` in `css/style.css` (`.site-nav`) if a different crop looks better once you see it live.
 

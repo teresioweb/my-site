@@ -8,6 +8,7 @@ body {
   color: #eee;
   min-height: 100vh;
   line-height: 1.8;
+  overflow-x: hidden;
 }
 
 /* --- site nav: fixed bar, hides on scroll down, reappears on scroll up.
@@ -272,6 +273,11 @@ figcaption {
   color: #222;
 }
 
+.reveal-img.side.color-band figcaption a {
+  color: #1a1a1a;
+  text-decoration: underline;
+}
+
 @media (max-width: 640px) {
   .reveal-img.side {
     flex-direction: column !important;
@@ -325,25 +331,60 @@ figcaption {
   to   { transform: translate(var(--tx), var(--ty)); opacity: 1; }
 }
 
-/* on narrow screens, scale the whole cluster down as one unit so the
-   images and their spacing shrink together and stay clear of the edges */
+/* on narrow screens, drop the clustered layout entirely and stack the
+   images vertically at a readable size, instead of shrinking them */
 @media (max-width: 640px) {
   .clump-stage {
-    height: 300px;
+    height: auto;
+    max-width: 420px;
   }
   .clump-anchor {
-    transform: scale(0.45);
+    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .clump-photo {
+    position: static;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 14 / 9;
+    opacity: 1;
+    animation: none;
   }
 }
 
 footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
   text-align: center;
-  padding: 40px 24px 60px;
-  color: #777;
-  font-size: 13px;
+  padding: 10px 20px;
+  background: rgba(220, 220, 220, 0.82);
+  backdrop-filter: blur(4px);
+  color: #333;
+  font-size: 12.5px;
 }
 
-footer a { color: #999; }
+footer a { color: #222; }
+
+footer .cc-logo {
+  height: 22px;
+  width: auto;
+  vertical-align: middle;
+}
+
+/* reserve space so the fixed footer doesn't cover the bottom of the content */
+main {
+  padding-bottom: 76px;
+}
 
 .gallery-grid {
   display: grid;
@@ -354,6 +395,21 @@ footer a { color: #999; }
 .gallery-grid .reveal-img img {
   aspect-ratio: 4 / 3;
   object-fit: cover;
+  cursor: pointer;
+}
+
+/* larger start offset for the gallery: creates a "two film reels sliding
+   in" effect — the top row from the right, the bottom row from the left */
+.gallery-grid .reveal-img img {
+  transform: translateX(-260px);
+}
+
+.gallery-grid .reveal-img.from-right img {
+  transform: translateX(260px);
+}
+
+.gallery-grid .reveal-img.visible img {
+  transform: translateX(0);
 }
 
 /* --- highlighted words inside the "Un discorso" quotes, pointing to
@@ -364,5 +420,40 @@ footer a { color: #999; }
   color: #1a1a1a;
   font-weight: 600;
   text-decoration: none;
+}
+
+/* --- lightbox: click a gallery image to see it enlarged in an overlay --- */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: rgba(0, 0, 0, 0.88);
+}
+
+.lightbox-overlay.open {
+  display: flex;
+}
+
+.lightbox-overlay img {
+  max-width: 90vw;
+  max-height: 88vh;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 22px;
+  right: 26px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 34px;
+  line-height: 1;
+  cursor: pointer;
 }
 
