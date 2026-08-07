@@ -18,7 +18,7 @@ body {
   left: 0;
   right: 0;
   z-index: 100;
-  padding: 0 28px;
+  padding: 0 44px;
   background: rgba(220, 220, 220, 0.82);
   backdrop-filter: blur(6px);
   transition: transform 0.35s ease;
@@ -29,13 +29,13 @@ body {
 }
 
 .nav-inner {
-  max-width: 980px;
+  max-width: 900px;
   margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  gap: 14px 28px;
+  gap: 28px;
   padding: 16px 0;
 }
 
@@ -63,7 +63,7 @@ body {
 
 .nav-links {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: flex-end;
   gap: 22px;
 }
@@ -74,6 +74,7 @@ body {
   text-decoration: none;
   font-size: 14.5px;
   letter-spacing: 0.2px;
+  white-space: nowrap;
   transition: opacity 0.2s ease;
 }
 
@@ -123,8 +124,15 @@ body {
   transform: rotate(-45deg);
 }
 
-/* mobile: thin bar with brand left, burger right; links become a dropdown */
-@media (max-width: 700px) {
+/* mobile: thin bar with brand left, burger right; links become a dropdown.
+   Threshold raised to 880px: with the real Merriweather Sans font (wider
+   than the fallback), the nav-inner needs more room before it fits on
+   one line without wrapping. */
+@media (max-width: 960px) {
+  .site-nav {
+    padding: 0 20px;
+  }
+
   .nav-inner {
     padding: 12px 0;
   }
@@ -140,7 +148,7 @@ body {
     left: 0;
     right: 0;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
     gap: 4px;
     padding: 0 24px;
     background: rgba(220, 220, 220, 0.82);
@@ -355,12 +363,14 @@ body.page-discorso {
 /* --- clump: several images slide in together from different sides
    and land clustered with spacing between them, then page text follows below.
    Each .clump-photo sets its own --fx/--fy (start offset) and --tx/--ty
-   (resting offset) inline, so the same keyframe works for all of them. --- */
+   (resting offset) inline, so the same keyframe works for all of them.
+   The stage bleeds slightly past main's padding (negative margin) to
+   give the photos more room to actually grow larger. --- */
 .clump-stage {
   position: relative;
-  height: 740px;
-  max-width: 740px;
-  margin: 0 auto 60px;
+  height: 800px;
+  width: calc(100% + 48px);
+  margin: 0 -24px 60px;
 }
 
 .clump-anchor {
@@ -373,8 +383,8 @@ body.page-discorso {
 
 .clump-photo {
   position: absolute;
-  width: 340px;
-  height: 220px;
+  width: 370px;
+  height: 240px;
   border-radius: 10px;
   overflow: hidden;
   opacity: 0;
@@ -400,7 +410,9 @@ body.page-discorso {
 @media (max-width: 640px) {
   .clump-stage {
     height: auto;
+    width: 100%;
     max-width: 420px;
+    margin: 0 auto 60px;
   }
   .clump-anchor {
     position: static;
@@ -442,10 +454,35 @@ footer {
 
 footer a { color: #000; }
 
+/* the global "p { color: #ddd }" rule directly targets this <p> too,
+   and a direct rule always wins over inheriting footer's own color —
+   so it needs its own explicit override here, not just on footer. */
+footer p {
+  color: #000;
+  line-height: 1.4;
+  margin: 0;
+}
+
 footer .cc-logo {
   height: 22px;
   width: auto;
-  vertical-align: middle;
+  display: block;
+}
+
+@media (max-width: 700px) {
+  footer {
+    padding: 5px 14px;
+    font-size: 10.5px;
+    gap: 6px;
+  }
+
+  footer p {
+    line-height: 1.3;
+  }
+
+  footer .cc-logo {
+    height: 15px;
+  }
 }
 
 /* small print / citation lines ("Fonte: ...") throughout the site */
