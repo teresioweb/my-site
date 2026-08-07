@@ -19,7 +19,7 @@ body {
   right: 0;
   z-index: 100;
   padding: 0 44px;
-  background: rgba(220, 220, 220, 0.82);
+  background: rgba(220, 220, 220, 0.55);
   backdrop-filter: blur(6px);
   transition: transform 0.35s ease;
 }
@@ -319,6 +319,14 @@ figcaption {
   text-decoration: underline;
 }
 
+/* on Logos 27 specifically, the site's usual link blue is confirmed
+   readable against the pastel bands there (and the one band with no
+   links at all can't conflict), so restore it instead of the dark
+   override used elsewhere */
+body.page-logos .reveal-img.side.color-band figcaption a {
+  color: #7fc7ff;
+}
+
 /* technical drawings as a faint watermark across the black page
    background — a near-opaque dark tint on top lets only a sliver of
    the pattern show through, so it never competes with the text or,
@@ -400,6 +408,23 @@ body.page-discorso {
   display: block;
 }
 
+.clump-photo a {
+  position: relative;
+  display: block;
+}
+
+.clump-photo a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.2s ease;
+}
+
+.clump-photo a:hover::after {
+  background: rgba(0, 0, 0, 0.18);
+}
+
 @keyframes clumpIn {
   from { transform: translate(var(--fx), var(--fy)); opacity: 0; }
   to   { transform: translate(var(--tx), var(--ty)); opacity: 1; }
@@ -437,6 +462,8 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
+  max-width: 760px;
+  margin: 0 auto;
   z-index: 90;
   display: flex;
   align-items: center;
@@ -444,15 +471,28 @@ footer {
   gap: 10px;
   flex-wrap: wrap;
   text-align: center;
-  padding: 10px 20px;
+  padding: 8px 20px;
   background: rgba(220, 220, 220, 0.82);
   backdrop-filter: blur(4px);
+  border-radius: 10px 10px 0 0;
   color: #000;
   font-family: 'Merriweather Sans', Arial, sans-serif;
   font-size: 12.5px;
 }
 
 footer a { color: #000; }
+
+/* forces a line break in the footer credit line, but only on mobile —
+   on desktop the <br> is suppressed and everything stays on one line */
+.mobile-break {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .mobile-break {
+    display: inline;
+  }
+}
 
 /* the global "p { color: #ddd }" rule directly targets this <p> too,
    and a direct rule always wins over inheriting footer's own color —
@@ -474,6 +514,7 @@ footer .cc-logo {
     padding: 5px 14px;
     font-size: 10.5px;
     gap: 6px;
+    border-radius: 0;
   }
 
   footer p {
@@ -513,6 +554,11 @@ main {
   aspect-ratio: 4 / 3;
   object-fit: cover;
   cursor: pointer;
+  transition: filter 0.2s ease, transform 0.8s ease, opacity 0.8s ease;
+}
+
+.gallery-grid .reveal-img img:hover {
+  filter: brightness(0.82);
 }
 
 /* larger start offset for the gallery: creates a "two film reels sliding
@@ -576,7 +622,7 @@ main {
 
 /* single dark, translucent band wrapping the "Nei ritagli" section */
 .ritagli-band {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.14);
   border-radius: 14px;
   padding: 28px 26px 6px;
 }
