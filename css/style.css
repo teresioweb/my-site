@@ -363,7 +363,7 @@ body.page-discorso {
 body.page-index {
   background-image:
     linear-gradient(rgba(16, 16, 16, 0.75), rgba(16, 16, 16, 0.75)),
-    url('../sfondi/disegno-3.svg');
+    url('../sfondi/disegno-4.svg');
   background-repeat: no-repeat, repeat;
   background-size: cover, 340px auto;
   background-color: #101010;
