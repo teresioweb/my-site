@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Merriweather+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap');
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -11,8 +11,7 @@ body {
   overflow-x: hidden;
 }
 
-/* --- site nav: fixed bar, hides on scroll down, reappears on scroll up.
-   Background is a faded drawing by Teresio, so nav text is dark. --- */
+/* --- site nav: fixed bar, hides on scroll down, reappears on scroll up. --- */
 .site-nav {
   position: fixed;
   top: 0;
@@ -25,17 +24,9 @@ body {
   justify-content: space-between;
   gap: 14px 28px;
   padding: 16px 28px;
-  background-image: url('images/frontura.jpg');
-  background-size: cover;
-  background-position: center 25%;
+  background: rgba(210, 210, 210, 0.5);
+  backdrop-filter: blur(6px);
   transition: transform 0.35s ease;
-}
-
-.site-nav::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.72);
 }
 
 .site-nav.nav-hidden {
@@ -49,6 +40,7 @@ body {
 }
 
 .brand {
+  font-family: 'Merriweather Sans', Arial, sans-serif;
   color: #111;
   font-weight: 700;
   font-size: 17px;
@@ -65,6 +57,7 @@ body {
 }
 
 .nav-links a {
+  font-family: 'Merriweather Sans', Arial, sans-serif;
   color: #111;
   text-decoration: none;
   font-size: 14.5px;
@@ -90,8 +83,7 @@ body {
   cursor: pointer;
 }
 
-/* mobile: thin bar with brand left, burger right; links become a
-   dropdown panel that reveals a larger area of the background drawing */
+/* mobile: thin bar with brand left, burger right; links become a dropdown */
 @media (max-width: 700px) {
   .site-nav {
     padding: 12px 20px;
@@ -111,22 +103,11 @@ body {
     align-items: flex-end;
     gap: 4px;
     padding: 22px 24px 26px;
-    background-image: url('images/frontura.jpg');
-    background-size: cover;
-    background-position: center 20%;
-  }
-
-  .nav-links::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background: rgba(255, 255, 255, 0.72);
+    background: rgba(210, 210, 210, 0.85);
+    backdrop-filter: blur(6px);
   }
 
   .nav-links a {
-    position: relative;
-    z-index: 1;
     padding: 9px 0;
   }
 
@@ -258,15 +239,32 @@ figcaption {
   object-position: top;
 }
 
-/* colored band behind image + text, like the landing page cards */
+/* colored band behind image + text, like the landing page cards.
+   Each figure sets --band-color (solid) and --band-tint (same colour,
+   semi-transparent) inline; the page (via a body class) sets --band-svg
+   to one of the technical drawings, tiled underneath the tint so the
+   pastel colour still reads clearly on top. */
 .reveal-img.side.color-band {
+  position: relative;
+  overflow: hidden;
   padding: 22px;
   border-radius: 14px;
   color: #1a1a1a;
+  background-color: var(--band-color, transparent);
+  background-image: linear-gradient(var(--band-tint, transparent), var(--band-tint, transparent)), var(--band-svg, none);
+  background-repeat: no-repeat, repeat;
+  background-size: cover, 220px auto;
 }
 
 .reveal-img.side.color-band figcaption {
+  position: relative;
+  z-index: 1;
   color: #222;
+}
+
+.reveal-img.side.color-band > a {
+  position: relative;
+  z-index: 1;
 }
 
 .reveal-img.side.color-band figcaption p {
@@ -276,6 +274,22 @@ figcaption {
 .reveal-img.side.color-band figcaption a {
   color: #1a1a1a;
   text-decoration: underline;
+}
+
+/* which drawing appears on which page */
+body.page-logos { --band-svg: url('sfondi/disegno-1.svg'); }
+body.page-curriculum { --band-svg: url('sfondi/disegno-2.svg'); }
+
+/* the "Un discorso" page has no colour bands to carry a tiled pattern,
+   so instead the drawing sits as a faint watermark across the whole
+   page: a near-opaque dark tint on top lets only a sliver of the
+   pattern show through, so it doesn't compete with the black
+   background and the quotes sitting directly on it */
+body.page-discorso {
+  background-image: linear-gradient(rgba(16, 16, 16, 0.93), rgba(16, 16, 16, 0.93)), url('sfondi/disegno-3.svg');
+  background-repeat: no-repeat, repeat;
+  background-size: cover, 340px auto;
+  background-color: #101010;
 }
 
 @media (max-width: 640px) {
@@ -370,6 +384,7 @@ footer {
   background: rgba(220, 220, 220, 0.82);
   backdrop-filter: blur(4px);
   color: #333;
+  font-family: 'Merriweather Sans', Arial, sans-serif;
   font-size: 12.5px;
 }
 
@@ -379,6 +394,21 @@ footer .cc-logo {
   height: 22px;
   width: auto;
   vertical-align: middle;
+}
+
+/* small print / citation lines ("Fonte: ...") throughout the site */
+.fonte {
+  font-family: 'Merriweather Sans', Arial, sans-serif;
+  font-size: 13px;
+  color: #888;
+}
+
+/* editorial framing lines (mine, not quoted from a source) — same
+   weight as body text, distinguished from the bold verbatim titles */
+.intro-line {
+  font-style: italic;
+  color: inherit;
+  opacity: 0.85;
 }
 
 /* reserve space so the fixed footer doesn't cover the bottom of the content */

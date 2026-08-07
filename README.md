@@ -28,8 +28,8 @@ Merriweather (serif) is loaded from Google Fonts via `@import` in `css/style.css
 **Footer (every page)** — new addition:
 - `images/creative.png` — Creative Commons badge, shown at 22px height in the fixed footer bar, linking to the license page.
 
-**Site nav bar (every page)** — new addition:
-- `images/frontura.jpg` — a pencil drawing by Teresio (1152×2048), used as a faded background across the whole nav bar. `background-size: cover; background-position: center 25%;` picks which part of the tall portrait image shows in the wide short bar — adjust `background-position` in `css/style.css` (`.site-nav`) if a different crop looks better once you see it live.
+**Background drawings (Logos 27, Curriculum, Un discorso di Capellaro)** — new addition:
+- `sfondi/disegno-1.svg`, `sfondi/disegno-2.svg`, `sfondi/disegno-3.svg` — vectorized technical drawings by Teresio, used as a tiled background pattern. I assigned them as: disegno-1 → Logos 27, disegno-2 → Curriculum, disegno-3 → Un discorso di Capellaro. This is a guess at pairing, not a confirmed mapping — swap the `url(...)` values in `css/style.css` (`body.page-logos`, `body.page-curriculum`, `body.page-discorso`) if you'd rather match them differently. On Logos/Curriculum the pattern sits tiled under each colour band at ~40% visibility (the pastel colour still reads on top); on "Un discorso" (which has no colour bands) it's a much fainter full-page watermark instead, so it doesn't compete with the black background and text.
 
 **Landing page (index.html)** — 4 small teaser thumbnails:
 - `images/card-tecnigrafo.jpg` — from `https://static.wixstatic.com/media/416323_36215ca9223f417b86a1f4e3c420fd2e~mv2_d_2300_1483_s_2.jpg`
@@ -66,7 +66,8 @@ To grab any Wix image at full quality: open the source URL in a browser and Save
 
 ## 2. Layout notes
 
-- **Header**: a fixed nav bar with a faded background drawing (`images/frontura.jpg`), "Teresio Gassino" on the left (links to the landing page), the other 5 links on the right. It hides on scroll down and reappears on scroll up — handled by `js/animations.js`. **On mobile** (under 700px), the links collapse into a burger menu on the right — tapping it opens a taller dropdown that reveals more of the background drawing; the bar stays visible while the dropdown is open and only starts hiding-on-scroll again once it's closed.
+- **Header**: a fixed, translucent light-gray nav bar (`rgba(210,210,210,0.5)` with a blur), "Teresio Gassino" on the left (links to the landing page), the other 5 links on the right. It hides on scroll down and reappears on scroll up — handled by `js/animations.js`. **On mobile** (under 700px), the links collapse into a burger menu on the right — tapping it opens a dropdown panel; the bar stays visible while the dropdown is open and only starts hiding-on-scroll again once it's closed.
+- **Typography**: Merriweather (serif) for body text; Merriweather Sans for the nav, the footer, and every small "Fonte: ..." citation line (class `.fonte`) — gives those UI/metadata bits their own visual register instead of sharing the reading typeface.
 - **Side-by-side image + description**: any `<figure class="reveal-img side">` shows the image and its `<figcaption>` next to each other (stacks on mobile). Add `from-right` to flip which side the image is on, `align-top` to align the text to the top of the image instead of centering it vertically, `square` for a taller/squarer image crop, and `crop-top` to crop the image from the top instead of the center. Used on the Logos 27 and Curriculum pages.
 - **Clump animation** (Un discorso di Capellaro): the 4 thumbnails in `.clump-stage` slide in together from different sides and land clustered, on page load — no JS needed, it's pure CSS (`@keyframes clumpFrom...` in `style.css`). All the page's text sits below it.
 - **Per-image reveal** (Home, Logos 27, Curriculum, Foto, Quercia): each image fades/slides in individually as it scrolls into view, via `js/animations.js`.
