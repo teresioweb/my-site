@@ -269,7 +269,7 @@ figcaption {
    on Logos/Curriculum, with the pastel colour bands sitting on top */
 body.page-logos {
   background-image:
-    linear-gradient(rgba(16, 16, 16, 0.93), rgba(16, 16, 16, 0.93)),
+    linear-gradient(rgba(16, 16, 16, 0.75), rgba(16, 16, 16, 0.75)),
     url('../sfondi/disegno-1.svg');
   background-repeat: no-repeat, repeat;
   background-size: cover, 340px auto;
@@ -278,7 +278,7 @@ body.page-logos {
 
 body.page-curriculum {
   background-image:
-    linear-gradient(rgba(16, 16, 16, 0.93), rgba(16, 16, 16, 0.93)),
+    linear-gradient(rgba(16, 16, 16, 0.75), rgba(16, 16, 16, 0.75)),
     url('../sfondi/disegno-2.svg');
   background-repeat: no-repeat, repeat;
   background-size: cover, 340px auto;
@@ -287,7 +287,7 @@ body.page-curriculum {
 
 body.page-discorso {
   background-image:
-    linear-gradient(rgba(16, 16, 16, 0.93), rgba(16, 16, 16, 0.93)),
+    linear-gradient(rgba(16, 16, 16, 0.75), rgba(16, 16, 16, 0.75)),
     url('../sfondi/disegno-3.svg');
   background-repeat: no-repeat, repeat;
   background-size: cover, 340px auto;
