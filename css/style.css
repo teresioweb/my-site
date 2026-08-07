@@ -360,6 +360,15 @@ body.page-discorso {
   background-color: #101010;
 }
 
+body.page-index {
+  background-image:
+    linear-gradient(rgba(16, 16, 16, 0.75), rgba(16, 16, 16, 0.75)),
+    url('../sfondi/disegno-3.svg');
+  background-repeat: no-repeat, repeat;
+  background-size: cover, 340px auto;
+  background-color: #101010;
+}
+
 @media (max-width: 640px) {
   .reveal-img.side {
     flex-direction: column !important;
