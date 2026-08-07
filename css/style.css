@@ -18,19 +18,25 @@ body {
   left: 0;
   right: 0;
   z-index: 100;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px 28px;
-  padding: 16px 28px;
-  background: rgba(210, 210, 210, 0.5);
+  padding: 0 28px;
+  background: rgba(220, 220, 220, 0.82);
   backdrop-filter: blur(6px);
   transition: transform 0.35s ease;
 }
 
 .site-nav.nav-hidden {
   transform: translateY(-100%);
+}
+
+.nav-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 28px;
+  padding: 16px 0;
 }
 
 .brand,
@@ -47,6 +53,12 @@ body {
   letter-spacing: 0.3px;
   text-decoration: none;
   white-space: nowrap;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+}
+
+.brand:hover {
+  border-bottom-color: #111;
 }
 
 .nav-links {
@@ -75,18 +87,46 @@ body {
   display: none;
   position: relative;
   z-index: 1;
+  width: 26px;
+  height: 20px;
   background: none;
   border: none;
-  color: #111;
-  font-size: 22px;
-  line-height: 1;
+  padding: 0;
   cursor: pointer;
+}
+
+.menu-toggle span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: #111;
+  transition: top 0.3s ease, transform 0.3s ease, opacity 0.2s ease;
+}
+
+.menu-toggle span:nth-child(1) { top: 0; }
+.menu-toggle span:nth-child(2) { top: 9px; }
+.menu-toggle span:nth-child(3) { top: 18px; }
+
+.menu-toggle.open span:nth-child(1) {
+  top: 9px;
+  transform: rotate(45deg);
+}
+
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+  top: 9px;
+  transform: rotate(-45deg);
 }
 
 /* mobile: thin bar with brand left, burger right; links become a dropdown */
 @media (max-width: 700px) {
-  .site-nav {
-    padding: 12px 20px;
+  .nav-inner {
+    padding: 12px 0;
   }
 
   .menu-toggle {
@@ -94,7 +134,7 @@ body {
   }
 
   .nav-links {
-    display: none;
+    display: flex;
     position: absolute;
     top: 100%;
     left: 0;
@@ -102,9 +142,14 @@ body {
     flex-direction: column;
     align-items: flex-end;
     gap: 4px;
-    padding: 22px 24px 26px;
-    background: rgba(210, 210, 210, 0.85);
+    padding: 0 24px;
+    background: rgba(220, 220, 220, 0.82);
     backdrop-filter: blur(6px);
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition: max-height 0.55s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease, padding 0.55s ease;
   }
 
   .nav-links a {
@@ -112,7 +157,10 @@ body {
   }
 
   .nav-links.open {
-    display: flex;
+    max-height: 400px;
+    opacity: 1;
+    padding: 22px 24px 26px;
+    pointer-events: auto;
   }
 }
 
@@ -310,8 +358,8 @@ body.page-discorso {
    (resting offset) inline, so the same keyframe works for all of them. --- */
 .clump-stage {
   position: relative;
-  height: 680px;
-  max-width: 700px;
+  height: 740px;
+  max-width: 740px;
   margin: 0 auto 60px;
 }
 
@@ -325,8 +373,8 @@ body.page-discorso {
 
 .clump-photo {
   position: absolute;
-  width: 280px;
-  height: 180px;
+  width: 340px;
+  height: 220px;
   border-radius: 10px;
   overflow: hidden;
   opacity: 0;
@@ -356,6 +404,8 @@ body.page-discorso {
   }
   .clump-anchor {
     position: static;
+    width: auto;
+    height: auto;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -385,12 +435,12 @@ footer {
   padding: 10px 20px;
   background: rgba(220, 220, 220, 0.82);
   backdrop-filter: blur(4px);
-  color: #333;
+  color: #000;
   font-family: 'Merriweather Sans', Arial, sans-serif;
   font-size: 12.5px;
 }
 
-footer a { color: #222; }
+footer a { color: #000; }
 
 footer .cc-logo {
   height: 22px;
@@ -485,5 +535,60 @@ main {
   font-size: 34px;
   line-height: 1;
   cursor: pointer;
+}
+
+/* single dark, translucent band wrapping the "Nei ritagli" section */
+.ritagli-band {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 28px 26px 6px;
+}
+
+.ritagli-band h2 {
+  margin-top: 0;
+}
+
+.centered-note {
+  text-align: center;
+}
+
+/* badge on linked images (Logos / Curriculum) indicating what the
+   link opens: PDF, video, an external page, or a larger image */
+.reveal-img.side > a {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.reveal-img.side > a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.2s ease;
+}
+
+.reveal-img.side > a:hover::after {
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.img-badge {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.72);
+  color: #fff;
+  font-family: 'Merriweather Sans', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
 }
 

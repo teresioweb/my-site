@@ -49,23 +49,30 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Mobile burger: toggles the dropdown, closes on link tap or outside tap.
+// The button itself morphs into an X while the dropdown is open.
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.querySelector(".menu-toggle");
   const menu = document.querySelector(".nav-links");
   if (!btn || !menu) return;
 
+  const setOpen = (open) => {
+    menu.classList.toggle("open", open);
+    btn.classList.toggle("open", open);
+    btn.setAttribute("aria-label", open ? "Chiudi il menu" : "Apri il menu");
+  };
+
   btn.addEventListener("click", (e) => {
     e.stopPropagation();
-    menu.classList.toggle("open");
+    setOpen(!menu.classList.contains("open"));
   });
 
   menu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => menu.classList.remove("open"));
+    link.addEventListener("click", () => setOpen(false));
   });
 
   document.addEventListener("click", (e) => {
     if (!menu.contains(e.target) && e.target !== btn) {
-      menu.classList.remove("open");
+      setOpen(false);
     }
   });
 });

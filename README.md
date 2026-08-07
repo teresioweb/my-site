@@ -29,7 +29,7 @@ Merriweather (serif) is loaded from Google Fonts via `@import` in `css/style.css
 - `images/creative.png` — Creative Commons badge, shown at 22px height in the fixed footer bar, linking to the license page.
 
 **Background drawings (Logos 27, Curriculum, Un discorso di Capellaro)**:
-- `sfondi/disegno-1.svg`, `sfondi/disegno-2.svg`, `sfondi/disegno-3.svg` — **currently filled with a placeholder** (the test drawing you shared earlier), copied into all three slots just so you can confirm the CSS mechanism actually works once deployed. Replace all three with the real, final vectorized drawings when ready. I assigned them as: disegno-1 → Logos 27, disegno-2 → Curriculum, disegno-3 → Un discorso di Capellaro — this pairing is a guess, not confirmed; swap the `url(...)` values in `css/style.css` (search for `body.page-logos`, `body.page-curriculum`, `body.page-discorso`) if you want a different pairing. The drawing sits as a faint tiled watermark across the whole black page background on all three pages (a near-opaque dark tint on top lets only a sliver show through) — it does **not** sit inside the pastel colour bands, those stay solid.
+- `sfondi/disegno-1.svg`, `sfondi/disegno-2.svg`, `sfondi/disegno-3.svg` — solved: export these with a **white stroke** (not black) — the CSS tints them with a dark overlay at 0.75 opacity so they read as a faint watermark on the black page background. Assigned as disegno-1 → Logos 27, disegno-2 → Curriculum, disegno-3 → Un discorso di Capellaro (swap the `url(...)` values in `css/style.css` — `body.page-logos`, `body.page-curriculum`, `body.page-discorso` — if you want a different pairing). The drawing sits behind everything on the page, including behind the pastel colour bands (which stay solid on top, no pattern inside them).
 
 **Landing page (index.html)** — 4 small teaser thumbnails:
 - `images/card-tecnigrafo.jpg` — from `https://static.wixstatic.com/media/416323_36215ca9223f417b86a1f4e3c420fd2e~mv2_d_2300_1483_s_2.jpg`
@@ -66,10 +66,12 @@ To grab any Wix image at full quality: open the source URL in a browser and Save
 
 ## 2. Layout notes
 
-- **Header**: a fixed, translucent light-gray nav bar (`rgba(210,210,210,0.5)` with a blur), "Teresio Gassino" on the left (links to the landing page), the other 5 links on the right. It hides on scroll down and reappears on scroll up — handled by `js/animations.js`. **On mobile** (under 700px), the links collapse into a burger menu on the right — tapping it opens a dropdown panel; the bar stays visible while the dropdown is open and only starts hiding-on-scroll again once it's closed.
+- **Header**: a fixed, translucent gray nav bar (`rgba(220,220,220,0.82)`, same opacity as the footer, with a blur), content constrained to a centered 980px `.nav-inner` so the brand and links don't stick to the viewport edges on wide screens. "Teresio Gassino" links to the landing page and underlines on hover, same as the other links. It hides on scroll down and reappears on scroll up — handled by `js/animations.js`. **On mobile** (under 700px), the links collapse into a burger menu on the right; tapping it animates open (slower, eased) and the burger morphs into an X — tap again (or tap a link, or tap outside) to close. The bar stays visible while the dropdown is open.
 - **Typography**: Merriweather (serif) for body text; Merriweather Sans for the nav, the footer, and every small "Fonte: ..." citation line (class `.fonte`) — gives those UI/metadata bits their own visual register instead of sharing the reading typeface.
+- **Footer**: fixed gray bar, all text black, Creative Commons logo first followed by the credit line (no `©` symbol — redundant with the logo).
 - **Side-by-side image + description**: any `<figure class="reveal-img side">` shows the image and its `<figcaption>` next to each other (stacks on mobile). Add `from-right` to flip which side the image is on, `align-top` to align the text to the top of the image instead of centering it vertically, `square` for a taller/squarer image crop, and `crop-top` to crop the image from the top instead of the center. Used on the Logos 27 and Curriculum pages.
-- **Clump animation** (Un discorso di Capellaro): the 4 thumbnails in `.clump-stage` slide in together from different sides and land clustered, on page load — no JS needed, it's pure CSS (`@keyframes clumpFrom...` in `style.css`). All the page's text sits below it.
+- **Image badges** (Logos 27, Curriculum): every linked image gets a small pill badge in the bottom-right corner (PDF / Video / Link / Immagine) via `.img-badge`, plus a subtle darkening overlay on hover, so it's clear upfront that the image is clickable and what it opens.
+- **Clump animation** (Un discorso di Capellaro): the 6 thumbnails in `.clump-stage` (340×220px each, 3 rows of 2) slide in together from different sides and land clustered, on page load — pure CSS. All the page's text sits below it, inside a single dark translucent `.ritagli-band`. On mobile, the clump switches to a plain vertical stack at readable size instead of the clustered layout.
 - **Per-image reveal** (Home, Logos 27, Curriculum, Foto, Quercia): each image fades/slides in individually as it scrolls into view, via `js/animations.js`.
 
 ## 3. Site structure vs. the original Wix site
@@ -90,4 +92,4 @@ git push -u origin main
 ```
 
 ## 5. Turn on GitHub Pages
-Settings → Pages → Source: "Deploy from a branch" → Branch: `main`, folder `/ (root)` → Save. Live within a minute or two at `https://YOUR-USERNAME.github.io/YOUR-REPO/`.
+Settings → Pages → Source: "Deploy from a branch" → Branch: `main`, folder `/ (root)` → Save. Since the repo is named `teresioweb.github.io` (a user/organization site), it deploys straight to `https://teresioweb.github.io/` — no repo name in the path. Live within a minute or two.
