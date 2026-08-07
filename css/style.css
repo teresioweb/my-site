@@ -240,31 +240,18 @@ figcaption {
 }
 
 /* colored band behind image + text, like the landing page cards.
-   Each figure sets --band-color (solid) and --band-tint (same colour,
-   semi-transparent) inline; a page-specific rule below layers the
-   right drawing underneath the tint, tiled, so the pastel colour
-   still reads clearly on top. */
+   Solid pastel colour only — the technical drawings live on the page
+   background instead (see body.page-* rules below), not inside these. */
 .reveal-img.side.color-band {
   position: relative;
-  overflow: hidden;
   padding: 22px;
   border-radius: 14px;
   color: #1a1a1a;
   background-color: var(--band-color, transparent);
-  background-image: linear-gradient(var(--band-tint, transparent), var(--band-tint, transparent));
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .reveal-img.side.color-band figcaption {
-  position: relative;
-  z-index: 1;
   color: #222;
-}
-
-.reveal-img.side.color-band > a {
-  position: relative;
-  z-index: 1;
 }
 
 .reveal-img.side.color-band figcaption p {
@@ -276,34 +263,32 @@ figcaption {
   text-decoration: underline;
 }
 
-/* which drawing appears on which page: direct rule per page, no
-   indirection, so it's easy to check in devtools whether the file
-   is actually found (the tinted colour still shows even if it isn't) */
-body.page-logos .reveal-img.side.color-band {
+/* technical drawings as a faint watermark across the black page
+   background — a near-opaque dark tint on top lets only a sliver of
+   the pattern show through, so it never competes with the text or,
+   on Logos/Curriculum, with the pastel colour bands sitting on top */
+body.page-logos {
   background-image:
-    linear-gradient(var(--band-tint, transparent), var(--band-tint, transparent)),
-    url('sfondi/disegno-1.svg');
+    linear-gradient(rgba(16, 16, 16, 0.93), rgba(16, 16, 16, 0.93)),
+    url('../sfondi/disegno-1.svg');
   background-repeat: no-repeat, repeat;
-  background-size: cover, 220px auto;
+  background-size: cover, 340px auto;
+  background-color: #101010;
 }
 
-body.page-curriculum .reveal-img.side.color-band {
+body.page-curriculum {
   background-image:
-    linear-gradient(var(--band-tint, transparent), var(--band-tint, transparent)),
-    url('sfondi/disegno-2.svg');
+    linear-gradient(rgba(16, 16, 16, 0.93), rgba(16, 16, 16, 0.93)),
+    url('../sfondi/disegno-2.svg');
   background-repeat: no-repeat, repeat;
-  background-size: cover, 220px auto;
+  background-size: cover, 340px auto;
+  background-color: #101010;
 }
 
-/* the "Un discorso" page has no colour bands to carry a tiled pattern,
-   so instead the drawing sits as a faint watermark across the whole
-   page: a near-opaque dark tint on top lets only a sliver of the
-   pattern show through, so it doesn't compete with the black
-   background and the quotes sitting directly on it */
 body.page-discorso {
   background-image:
     linear-gradient(rgba(16, 16, 16, 0.93), rgba(16, 16, 16, 0.93)),
-    url('sfondi/disegno-3.svg');
+    url('../sfondi/disegno-3.svg');
   background-repeat: no-repeat, repeat;
   background-size: cover, 340px auto;
   background-color: #101010;
