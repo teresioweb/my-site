@@ -11,16 +11,24 @@ body {
   overflow-x: hidden;
 }
 
-/* --- site nav: fixed bar, hides on scroll down, reappears on scroll up. --- */
+/* --- site nav: fixed bar, hides on scroll down, reappears on scroll up.
+   Floats narrower than full width (max-width 860px — measured to
+   comfortably fit brand + 5 links on one line with real margin, while
+   still reading as a floating panel like the footer). Flush with the
+   top edge, so only the bottom corners round — mirrors the footer,
+   which is flush with the bottom edge and rounds only its top corners. --- */
 .site-nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  max-width: 860px;
+  margin: 0 auto;
   z-index: 100;
   padding: 0 44px;
   background: rgba(220, 220, 220, 0.55);
   backdrop-filter: blur(6px);
+  border-radius: 0 0 10px 10px;
   transition: transform 0.35s ease;
 }
 
@@ -131,6 +139,8 @@ body {
 @media (max-width: 960px) {
   .site-nav {
     padding: 0 20px;
+    max-width: none;
+    border-radius: 0;
   }
 
   .nav-inner {
@@ -217,7 +227,7 @@ blockquote::before {
 }
 
 a {
-  color: #7fc7ff;
+  color: #2974AE;
 }
 
 figure {
@@ -315,16 +325,8 @@ figcaption {
 }
 
 .reveal-img.side.color-band figcaption a {
-  color: #1a1a1a;
+  color: #2974AE;
   text-decoration: underline;
-}
-
-/* on Logos 27 specifically, the site's usual link blue is confirmed
-   readable against the pastel bands there (and the one band with no
-   links at all can't conflict), so restore it instead of the dark
-   override used elsewhere */
-body.page-logos .reveal-img.side.color-band figcaption a {
-  color: #7fc7ff;
 }
 
 /* technical drawings as a faint watermark across the black page
@@ -491,6 +493,10 @@ footer a { color: #000; }
 @media (max-width: 700px) {
   .mobile-break {
     display: inline;
+  }
+
+  .desktop-dot {
+    display: none;
   }
 }
 
