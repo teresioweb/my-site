@@ -822,14 +822,15 @@ footer .cc-logo {
   margin-top: 0;
 }
 
-/* overlay hint centered over the clump, visible only at the very top of
-   the page — fades out on scroll instead of taking up permanent space
+/* overlay hint positioned within the first row of images (not centered
+   on the whole tall clump), so it's visible immediately without any
+   scroll — fades out on scroll instead of taking up permanent space
    in the reading column (see js/animations.js for the scroll handler) */
 .discorso-hint {
   position: absolute;
-  top: 50%;
+  top: 96px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   z-index: 5;
   margin: 0;
   padding: 10px 22px;
@@ -846,6 +847,12 @@ footer .cc-logo {
 
 .discorso-hint.hidden {
   opacity: 0;
+}
+
+@media (max-width: 640px) {
+  .discorso-hint {
+    top: 70px;
+  }
 }
 
 @media (max-width: 500px) {
