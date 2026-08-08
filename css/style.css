@@ -199,6 +199,15 @@ h1 {
   margin-bottom: 28px;
 }
 
+/* whatever type of element happens to close a page (p, figure, div...)
+   carries its own trailing margin, which otherwise stacks on top of
+   main's own padding-bottom and makes the gap to the footer vary by
+   page depending on content type. Zeroing it here makes that gap a
+   single, predictable value everywhere. */
+main > *:last-child {
+  margin-bottom: 0;
+}
+
 /* vertical rhythm, scaled down for mobile: the same fixed pixel gap
    reads as proportionally larger on a small screen (less surrounding
    content, less width) than on desktop, so mobile gets its own
@@ -813,7 +822,7 @@ footer .cc-logo {
 /* single dark, translucent band wrapping a block of text (the "Nei
    ritagli" quotes, or the Quercia intro paragraph) */
 .ritagli-band {
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.25);
   border-radius: 14px;
   padding: 28px 26px 6px;
 }
