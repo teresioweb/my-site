@@ -79,32 +79,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Lightbox: click any element with .lightbox-trigger (an image, or a
 // button with data-src) to see the full image enlarged in an overlay.
-// Used by the Foto gallery grid and by the Quercia scroll windows.
+// Used by the Foto gallery grid. A data-caption attribute (or the
+// image's own alt text) shows as a caption under the enlarged image.
 // Closes on the X, on clicking outside the image, or on Escape.
 document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.querySelector(".lightbox-overlay");
   if (!overlay) return;
 
   const overlayImg = overlay.querySelector("img");
+  const overlayCaption = overlay.querySelector(".lightbox-caption");
   const closeBtn = overlay.querySelector(".lightbox-close");
 
-  const open = (src, alt) => {
+  const open = (src, alt, caption) => {
     overlayImg.src = src;
     overlayImg.alt = alt || "";
+    if (overlayCaption) overlayCaption.textContent = caption || "";
     overlay.classList.add("open");
   };
 
   const close = () => {
     overlay.classList.remove("open");
     overlayImg.src = "";
+    if (overlayCaption) overlayCaption.textContent = "";
   };
 
   document.querySelectorAll(".lightbox-trigger").forEach((el) => {
     const src = el.dataset.src || el.src;
     const alt = el.dataset.alt || el.alt || "";
+    const caption = el.dataset.caption || el.alt || "";
     el.addEventListener("click", (e) => {
       e.preventDefault();
-      open(src, alt);
+      open(src, alt, caption);
     });
   });
 

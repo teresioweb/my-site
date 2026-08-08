@@ -414,8 +414,6 @@ body.page-quercia {
   position: absolute;
   width: 370px;
   height: 240px;
-  border-radius: 10px;
-  overflow: hidden;
   opacity: 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
   animation: clumpIn 0.9s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
@@ -432,6 +430,10 @@ body.page-quercia {
 .clump-photo a {
   position: relative;
   display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .clump-photo a::after {
@@ -575,6 +577,12 @@ main {
   gap: 16px;
 }
 
+.gallery-grid .reveal-img {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
 .gallery-grid .reveal-img img {
   aspect-ratio: 4 / 3;
   object-fit: cover;
@@ -584,6 +592,29 @@ main {
 
 .gallery-grid .reveal-img img:hover {
   filter: brightness(0.82);
+}
+
+/* flavor-text caption: hidden by default, fades in over the bottom of
+   the thumbnail on hover */
+.gallery-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 24px 12px 10px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.82), transparent);
+  color: #fff;
+  font-family: 'Merriweather Sans', Arial, sans-serif;
+  font-size: 12.5px;
+  line-height: 1.3;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.gallery-grid .reveal-img:hover .gallery-caption {
+  opacity: 1;
 }
 
 /* larger start offset for the gallery: creates a "two film reels sliding
@@ -626,11 +657,31 @@ main {
   display: flex;
 }
 
-.lightbox-overlay img {
+.lightbox-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 90vw;
   max-height: 88vh;
+}
+
+.lightbox-overlay img {
+  max-width: 90vw;
+  max-height: 80vh;
   border-radius: 8px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.lightbox-caption {
+  margin: 14px 0 0;
+  color: #fff;
+  font-family: 'Merriweather Sans', Arial, sans-serif;
+  font-size: 14px;
+  text-align: center;
+}
+
+.lightbox-caption:empty {
+  display: none;
 }
 
 .lightbox-close {
@@ -660,7 +711,7 @@ main {
 .quercia-window {
   position: relative;
   flex: 1 1 320px;
-  height: 560px;
+  height: 373px;
   overflow-y: auto;
   border-radius: 10px;
   background: #000;
@@ -670,6 +721,7 @@ main {
 .quercia-window img {
   display: block;
   width: 100%;
+  margin-top: -41px;
 }
 
 .quercia-expand {
@@ -680,10 +732,12 @@ main {
   gap: 4px;
   margin: 14px 14px 0 auto;
   padding: 4px 10px;
+  width: fit-content;
   border: none;
   border-radius: 20px;
   background: rgba(0, 0, 0, 0.72);
   color: #fff;
+  text-decoration: none;
   font-family: 'Merriweather Sans', Arial, sans-serif;
   font-size: 11px;
   font-weight: 600;
@@ -698,14 +752,15 @@ main {
 
 @media (max-width: 700px) {
   .quercia-window {
-    height: 420px;
+    height: 280px;
     flex: 1 1 100%;
   }
 }
 
-/* single dark, translucent band wrapping the "Nei ritagli" section */
+/* single dark, translucent band wrapping a block of text (the "Nei
+   ritagli" quotes, or the Quercia intro paragraph) */
 .ritagli-band {
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.19);
   border-radius: 14px;
   padding: 28px 26px 6px;
 }
@@ -716,6 +771,7 @@ main {
 
 .centered-note {
   text-align: center;
+  font-family: 'Merriweather Sans', Arial, sans-serif;
 }
 
 /* badge on linked images (Logos / Curriculum) indicating what the
