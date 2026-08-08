@@ -190,13 +190,28 @@ body {
 main {
   max-width: 760px;
   margin: 0 auto;
-  padding: 60px 24px 100px;
+  padding: 60px 24px 68px;
 }
 
 h1 {
   font-size: 30px;
   font-weight: 600;
   margin-bottom: 28px;
+}
+
+/* vertical rhythm, scaled down for mobile: the same fixed pixel gap
+   reads as proportionally larger on a small screen (less surrounding
+   content, less width) than on desktop, so mobile gets its own
+   smaller values instead of inheriting the desktop numbers as-is */
+@media (max-width: 700px) {
+  main {
+    padding-top: 24px;
+    padding-bottom: 52px;
+  }
+
+  h1 {
+    margin-bottom: 12px;
+  }
 }
 
 h2 {
@@ -566,11 +581,6 @@ footer .cc-logo {
   font-style: normal;
 }
 
-/* reserve space so the fixed footer doesn't cover the bottom of the content */
-main {
-  padding-bottom: 76px;
-}
-
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -696,6 +706,49 @@ main {
   cursor: pointer;
 }
 
+/* prev/next: navigate the gallery without leaving the lightbox, loops
+   at both ends. Keyboard arrows do the same (see animations.js) */
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  color: #fff;
+  font-size: 40px;
+  line-height: 1;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.lightbox-prev {
+  left: 18px;
+}
+
+.lightbox-next {
+  right: 18px;
+}
+
+@media (max-width: 600px) {
+  .lightbox-prev,
+  .lightbox-next {
+    width: 42px;
+    height: 42px;
+    font-size: 30px;
+  }
+  .lightbox-prev { left: 8px; }
+  .lightbox-next { right: 8px; }
+}
+
 /* --- quercia scroll windows: tall Facebook screenshots contained in a
    fixed-height frame with a native vertical scrollbar, so the page
    itself doesn't become enormous. The expand button stays pinned to
@@ -760,7 +813,7 @@ main {
 /* single dark, translucent band wrapping a block of text (the "Nei
    ritagli" quotes, or the Quercia intro paragraph) */
 .ritagli-band {
-  background: rgba(255, 255, 255, 0.19);
+  background: rgba(255, 255, 255, 0.25);
   border-radius: 14px;
   padding: 28px 26px 6px;
 }
@@ -769,9 +822,37 @@ main {
   margin-top: 0;
 }
 
-.centered-note {
-  text-align: center;
+/* overlay hint centered over the clump, visible only at the very top of
+   the page — fades out on scroll instead of taking up permanent space
+   in the reading column (see js/animations.js for the scroll handler) */
+.discorso-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  margin: 0;
+  padding: 10px 22px;
+  border-radius: 24px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
   font-family: 'Merriweather Sans', Arial, sans-serif;
+  font-size: 14px;
+  text-align: center;
+  white-space: nowrap;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.discorso-hint.hidden {
+  opacity: 0;
+}
+
+@media (max-width: 500px) {
+  .discorso-hint {
+    white-space: normal;
+    width: 80%;
+  }
 }
 
 /* badge on linked images (Logos / Curriculum) indicating what the
