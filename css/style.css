@@ -22,7 +22,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  max-width: 860px;
+  max-width: 950px;
   margin: 0 auto;
   z-index: 100;
   padding: 0 44px;
@@ -63,6 +63,15 @@ body {
   white-space: nowrap;
   padding-bottom: 2px;
   border-bottom: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.brand-signature {
+  height: 26px;
+  width: auto;
+  display: block;
 }
 
 .brand:hover {
@@ -136,7 +145,7 @@ body {
    Threshold raised to 880px: with the real Merriweather Sans font (wider
    than the fallback), the nav-inner needs more room before it fits on
    one line without wrapping. */
-@media (max-width: 960px) {
+@media (max-width: 1080px) {
   .site-nav {
     padding: 0 20px;
     max-width: none;
@@ -232,22 +241,6 @@ h2 {
 p {
   margin-bottom: 18px;
   color: #ddd;
-}
-
-blockquote {
-  border-left: 3px solid #444;
-  padding-left: 16px;
-  margin: 20px 0;
-  color: #bbb;
-  font-style: normal;
-}
-
-blockquote::before {
-  content: ">";
-  display: inline;
-  margin-right: 8px;
-  color: #777;
-  font-weight: 700;
 }
 
 a {
@@ -829,8 +822,16 @@ footer .cc-logo {
   padding: 28px 26px 6px;
 }
 
-.ritagli-band h2 {
-  margin-top: 0;
+.ritagli-band p {
+  color: #ddd;
+}
+
+.ritagli-band p::before {
+  content: ">";
+  display: inline;
+  margin-right: 8px;
+  color: #999;
+  font-weight: 700;
 }
 
 /* overlay hint positioned within the first row of images (not centered

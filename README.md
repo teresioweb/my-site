@@ -7,10 +7,10 @@ A static tribute site with real content, Italian typography (Merriweather), and 
 site/
 ├── index.html                      ← landing page (matches Wix root "/")
 ├── home.html                       ← full essay (matches Wix "/home")
-├── logos-27.html
-├── un-discorso-di-capellaro.html
+├── logos.html
+├── discorso.html
 ├── curriculum.html
-├── galleria-immagini.html          ← Foto (gallery placeholder, needs your images)
+├── galleria.html          ← Foto (gallery placeholder, needs your images)
 ├── quercia.html                    ← hidden page, NOT in nav, linked from home.html text only
 ├── css/style.css
 ├── js/animations.js
@@ -60,7 +60,7 @@ Go to the live Wix page for this section to confirm/replace these, or substitute
 - `images/quercia/quercia-racciano-1.jpg` — from `https://static.wixstatic.com/media/416323_6e9e04a810f040c598a8abe51ce96568~mv2.png`
 - `images/quercia/quercia-racciano-2.jpg` — from `https://static.wixstatic.com/media/416323_4641bb0c84a94d76ac18b61d3d09aebf~mv2.png`
 
-**Foto (galleria-immagini.html)** — still a placeholder; pull images from the live Wix gallery or Media Manager into `images/galleria/`.
+**Foto (galleria.html)** — still a placeholder; pull images from the live Wix gallery or Media Manager into `images/galleria/`.
 
 To grab any Wix image at full quality: open the source URL in a browser and Save As, or better, pull the original from the Wix Media Manager if you have account access (the URLs above are Wix's compressed display versions).
 
