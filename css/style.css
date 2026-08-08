@@ -374,7 +374,7 @@ body.page-quercia {
     linear-gradient(rgba(16, 16, 16, 0.75), rgba(16, 16, 16, 0.75)),
     url('../sfondi/sgimignano.svg');
   background-repeat: no-repeat, repeat;
-  background-size: cover, 340px auto;
+  background-size: cover, 1200px auto;
   background-color: #101010;
 }
 
