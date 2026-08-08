@@ -376,7 +376,7 @@ body.page-quercia {
   background-repeat: no-repeat, no-repeat;
   background-size: cover, 1240px auto;
   background-color: #101010;
-  background-position-y: 100px;
+  background-position-y: 50px;
 }
 
 @media (max-width: 640px) {
