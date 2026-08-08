@@ -77,13 +77,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Gallery lightbox: click any image inside .gallery-grid to see it
-// enlarged in an overlay. Closes on the X, on clicking outside the
-// image, or on Escape.
+// Lightbox: click any element with .lightbox-trigger (an image, or a
+// button with data-src) to see the full image enlarged in an overlay.
+// Used by the Foto gallery grid and by the Quercia scroll windows.
+// Closes on the X, on clicking outside the image, or on Escape.
 document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.querySelector(".lightbox-overlay");
-  const gallery = document.querySelector(".gallery-grid");
-  if (!overlay || !gallery) return;
+  if (!overlay) return;
 
   const overlayImg = overlay.querySelector("img");
   const closeBtn = overlay.querySelector(".lightbox-close");
@@ -99,8 +99,13 @@ document.addEventListener("DOMContentLoaded", () => {
     overlayImg.src = "";
   };
 
-  gallery.querySelectorAll("img").forEach((img) => {
-    img.addEventListener("click", () => open(img.src, img.alt));
+  document.querySelectorAll(".lightbox-trigger").forEach((el) => {
+    const src = el.dataset.src || el.src;
+    const alt = el.dataset.alt || el.alt || "";
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      open(src, alt);
+    });
   });
 
   closeBtn.addEventListener("click", close);

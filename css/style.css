@@ -645,6 +645,64 @@ main {
   cursor: pointer;
 }
 
+/* --- quercia scroll windows: tall Facebook screenshots contained in a
+   fixed-height frame with a native vertical scrollbar, so the page
+   itself doesn't become enormous. The expand button stays pinned to
+   the top-right while scrolling (position: sticky), and opens the
+   same lightbox used on the Foto page via .lightbox-trigger. --- */
+.quercia-windows {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.quercia-window {
+  position: relative;
+  flex: 1 1 320px;
+  height: 560px;
+  overflow-y: auto;
+  border-radius: 10px;
+  background: #000;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.quercia-window img {
+  display: block;
+  width: 100%;
+}
+
+.quercia-expand {
+  position: sticky;
+  top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 14px 14px 0 auto;
+  padding: 4px 10px;
+  border: none;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.72);
+  color: #fff;
+  font-family: 'Merriweather Sans', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.quercia-expand:hover {
+  background: rgba(0, 0, 0, 0.88);
+}
+
+@media (max-width: 700px) {
+  .quercia-window {
+    height: 420px;
+    flex: 1 1 100%;
+  }
+}
+
 /* single dark, translucent band wrapping the "Nei ritagli" section */
 .ritagli-band {
   background: rgba(255, 255, 255, 0.14);
