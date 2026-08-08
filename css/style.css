@@ -813,7 +813,7 @@ footer .cc-logo {
 /* single dark, translucent band wrapping a block of text (the "Nei
    ritagli" quotes, or the Quercia intro paragraph) */
 .ritagli-band {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.35);
   border-radius: 14px;
   padding: 28px 26px 6px;
 }
